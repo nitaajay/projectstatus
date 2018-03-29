@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SCO ProStatus - Report Project Status</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!------------------------------------------------------------------------------------------------------>
+    <!-- Following set of scripts are needed to be called for retrieving list of projects using angularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="js/dateutilities.js"></script>
+	<script src="controllers/common/returnuri.js"></script>
+	<script src="controllers/common/updateCRUD.js"></script>
+	<script src="controllers/common/getverbosemonth.js"></script>
+	<script src="controllers/projectslisting.js"></script>
+	 <!------------------------------------------------------------------------------------------------------>
+	 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SCO Pro</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<i class="fa fa-user fa-fw"></i> <span id="uname">John Doe</span> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu dropdown-user">
+						<li><a href="changepw.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
+                        </li>
+						<li><a id="logout" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	<!-- Sidebar -->
+	<div class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse">
+
+			<ul class="nav" id="side-menu">
+				<li>
+					<a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-cogs fa-fw"></i> Admin<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="manageprojects.html"> Manage Projects</a>
+						</li>
+
+					</ul>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-calendar-check-o fa-fw"></i> Status Reporting<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="reportstatus.html"> Project Status Entry</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+					<h1 class="page-header">Report Project Status</h1>
+					<h2>Week of <span id="currweekdate"></span></h2>
+                </div>
+            </div>
+
+			<!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa  fa-calendar-check-o fa-fw"></i> Please set the project status below
+                            <div class="pull-right">
+                            </div>
+                        </div>
+
+						<!-- /.panel-heading -->
+                        <div class="panel-body">    
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Select Project:
+									</div>
+									<div class="col-lg-8"  ng-app="projectApp" ng-controller="projectcontroller">
+										<select class="form-control" id="selproject">
+											<option value="0">  </option>
+											<option ng-repeat="project in projectslist" value="{{ project.id }}"> {{ project.projectname }} </option>
+										</select>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row" style="display: none">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Project ID:
+									</div>
+									<div class="col-lg-8" >
+										<span id="projid"></span>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row" style="display: none">
+								<div class="col-lg-12" ng-repeat="proj in project">
+									<div class="col-sm-3">
+										Manager / Manager ID:
+									</div>
+									<div class="col-lg-8" >
+										<span id="mang"></span> | <span id="manid"></span>
+									</div>
+								</div>	
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										
+									</div>
+									<div class="col-lg-8" >
+										<span id="statdatetime"></span>
+										<span id="statmonth"></span> <span id="statyear"></span>
+										<center><button id="btnretrieve" class="btn-warning"> Retrieve Previous Status </button></center>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+									<hr><center><span id="retrievestatus" style="color: #ff0000;"></center></span><hr><br>
+								</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Overall Indicator:
+									</div>
+									<div class="col-lg-6">
+										<select class="form-control" id="overall">
+											<option> </option>
+											<option value="On Schedule" class="btn-success"> On Schedule </option>
+											<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+											<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+										</select>
+									</div>
+									<div class="col-lg-3"><span  id="overallind"></span></div>
+
+								</div>	
+							</div>
+							<div class="row">
+									<br>
+								</div>
+							<div class="row">
+									<div class="col-lg-12">
+											<a class="form-control btn btn-primary" data-toggle="collapse" href="#collapseSDLC" aria-expanded="false" aria-controls="collapseSDLC">
+												SDLC Phase Status Reporting (Click to Expand)
+											</a>
+										</div>
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									
+									<div class="col-lg-12 collapse" id="collapseSDLC">
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkintake"> Intake Planning & Impact Analysis 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="intake">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkreq"> Requirements 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="requirements">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkdesign"> Design 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="design">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkbuild"> Build & Test 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="build">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkpo"> Implementation 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="po">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chkaccept"> Final Client Acceptance  
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="firstrun">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox" id="chksustainment"> Sustainment 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control" id="sustainmentstatus">
+														<option> </option>
+														<option value="On Schedule" class="btn-info"> On Schedule </option>
+														<option value="Minor Show Stoppers - Can be Mitigated" class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+														<option value="Major Show Stoppers HELP!" class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										
+										<br/>
+										<i>* Check if completed</i>
+									</div>
+								</div>	
+							</div>
+
+							<div class="row">
+									<div class="col-lg-12">
+											<center><button class="form-control btn btn-info" data-toggle="collapse" href="#collapsestakeholders" aria-expanded="false" aria-controls="collapsestakeholders">
+												Stakeholders (Click to Expand)
+											</a></center>
+										</div>
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 collapse" id="collapsestakeholders">
+									<div class="col-lg-12">
+										<input type="text" class="form-control" name="stakeholders1" id="stakeholders1" placeholder="1."><br>
+										<input type="text" class="form-control" name="stakeholders2"  id="stakeholders2" placeholder="2."><br>
+										<input type="text" class="form-control" name="stakeholders3"  id="stakeholders3" placeholder="3."><br>
+										<input type="text" class="form-control" name="stakeholders4"  id="stakeholders4" placeholder="4."><br>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+									<div class="col-lg-12">
+											<center><button class="form-control btn btn-success" data-toggle="collapse" href="#collapseaccomplishments" aria-expanded="false" aria-controls="collapseaccomplishments">
+													Accomplishments (Click to Expand)
+											</a></center>
+										</div>
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 collapse" id="collapseaccomplishments">
+									<div class="col-lg-12">
+										<input type="text" class="form-control" name="accomplishments1" id="acc1" placeholder="1."><br>
+										<input type="text" class="form-control" name="accomplishments2"  id="acc2" placeholder="2."><br>
+										<input type="text" class="form-control" name="accomplishments3"  id="acc3" placeholder="3."><br>
+										<input type="text" class="form-control" name="accomplishments4"  id="acc4" placeholder="4."><br>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+									<div class="col-lg-12">
+											<center><button class="form-control btn btn-success" data-toggle="collapse" href="#collapsegoals" aria-expanded="false" aria-controls="collapsegoals">
+													Next Week Goals (Click to Expand)
+											</a></center>
+										</div>
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 collapse" id="collapsegoals">
+									<div class="col-lg-12">
+										<input type="text" class="form-control"  id="nextweekgoals1" placeholder="1."><br>
+										<input type="text" class="form-control"   id="nextweekgoals2" placeholder="2."><br>
+										<input type="text" class="form-control"   id="nextweekgoals3" placeholder="3."><br>
+										<input type="text" class="form-control"  id="nextweekgoals4" placeholder="4."><br>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+									<div class="col-lg-12">
+											<center><button class="form-control btn btn-danger" data-toggle="collapse" href="#collapseissues" aria-expanded="false" aria-controls="collapseissues">
+													Issues & Mitigation (Click to Expand)
+											</a></center>
+										</div>
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="collapse" id="collapseissues">
+								<div class="row">
+									<div class="col-lg-12" style="background-color: #eca0a0" >
+										<div class="col-lg-6">
+											Issues:
+										</div>
+										<div class="col-lg-6" style="background-color: #c7f0bf" >
+												Mitigation:
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6" style="background-color: #eca0a0" > 
+										<input type="text" class="form-control" name="issues1" id="issues1" placeholder="1.">
+									</div>
+									<div class="col-lg-6" style="background-color: #c7f0bf" >
+											<input type="text" class="form-control" name="issuemitigation1" id="issuemitigation1" placeholder="1.">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12" style="background-color: #eca0a0" >
+										<div class="col-lg-6">
+											&nbsp;
+										</div>
+										<div class="col-lg-6" style="background-color: #c7f0bf" >
+												&nbsp;
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6" style="background-color: #eca0a0" > 
+										<input type="text" class="form-control" name="issues2" id="issues2" placeholder="2.">
+									</div>
+									<div class="col-lg-6" style="background-color: #c7f0bf" >
+											<input type="text" class="form-control" name="issuemitigation2" id="issuemitigation2" placeholder="2.">
+									</div>
+								</div>
+								<div class="row">
+										<div class="col-lg-12" style="background-color: #eca0a0" >
+											<div class="col-lg-6">
+												&nbsp;
+											</div>
+											<div class="col-lg-6" style="background-color: #c7f0bf" >
+													&nbsp;
+											</div>
+										</div>
+									</div>
+								<div class="row">
+									<div class="col-lg-6" style="background-color: #eca0a0" > 
+										<input type="text" class="form-control" name="issues3" id="issues3" placeholder="3.">
+									</div>
+									<div class="col-lg-6" style="background-color: #c7f0bf" >
+											<input type="text" class="form-control" name="issuemitigation3" id="issuemitigation3" placeholder="3.">
+									</div>
+								</div>
+								<div class="row">
+										<div class="col-lg-12" style="background-color: #eca0a0" >
+											<div class="col-lg-6">
+												&nbsp;
+											</div>
+											<div class="col-lg-6" style="background-color: #c7f0bf" >
+													&nbsp;
+											</div>
+										</div>
+									</div>
+								<div class="row">
+									<div class="col-lg-6" style="background-color: #eca0a0" > 
+										<input type="text" class="form-control" name="issues4" id="issues4" placeholder="4.">
+									</div>
+									<div class="col-lg-6" style="background-color: #c7f0bf" >
+											<input type="text" class="form-control" name="issuemitigation4" id="issuemitigation4" placeholder="4.">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-12" style="background-color: #eca0a0" >
+										<div class="col-lg-6">
+											&nbsp;
+										</div>
+										<div class="col-lg-6" style="background-color: #c7f0bf" >
+												&nbsp;
+										</div>
+									</div>
+							</div>
+						</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-3">
+										Lessons Learnt:
+									</div>
+									<div class="col-lg-8">
+										<textarea id="lessonslearnt" class="form-control" rows="5" placeholder="Enter brief lessons learnt here"></textarea> 
+									</div>
+								</div>	
+							</div>
+						</div>
+						<div class="row">
+							<br>
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+									
+							</div>
+							<div class="col-lg-5">
+								<button class="form-control btn btn-primary" id="btnreportstatus"> Submit </button>
+								<br><br>
+								<center><span id="msg"></span></center>
+								<br><br>
+							</div>
+						</div>
+					</div>
+                    <!-- /.panel-body -->
+
+					</div>
+				</div>
+            <!-- ... Your content goes here ... -->
+
+			<div style="height: 100px;"></div>
+			<center>
+				&copy 2020. All Rights Reserved. California State Controller's Office. ISD Division.<br>
+				This portal is for authorized personnel only. For access request please contact ISD Customer Service
+			</center>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+
+<!-- Retrieve URL query string JavaScript -->
+<script src="js/retrievequerystring.js"></script>
+
+<!-- business logic JavaScript -->
+<script src="js/setusername.js"></script>
+<script src="js/reportstatus.js"></script>
+<script src="controllers/jQcreateprojectstatus.js"></script>
+
+</body>
+</html>

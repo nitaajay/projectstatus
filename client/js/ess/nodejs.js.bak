@@ -1,0 +1,11 @@
+$(document).ready(function(){
+        $.getJSON("http://localhost:8081/getuserdetails/1", function(result){
+                $("#name").append(result.name);
+				$("#pw").append(result.password);
+				$("#prof").append(result.profession);
+        });
+    });
+
+	$( "#target" ).click(function() {
+  alert( "Handler for .click() called." );
+});

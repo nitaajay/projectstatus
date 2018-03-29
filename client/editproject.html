@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SCO ProStatus - Edit Project</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!------------------------------------------------------------------------------------------------------>
+    <!-- Following set of scripts are needed to be called for retrieving list of managers using angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/retrievequerystring.js"></script>
+    <script src="js/getProjectIDfromquerystring.js"></script>
+    <script src="controllers/common/returnuri.js"></script>
+
+    <script src="controllers/getprojectbyid.js"></script>
+
+    <!------------------------------------------------------------------------------------------------------>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SCO Pro</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <span id="uname">John Doe</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                        <li><a href="changepw.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
+                        </li>
+                        <li><a id="logout" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cogs fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="manageprojects.html"> Manage Projects</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-calendar-check-o fa-fw"></i> Status Reporting<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="reportstatus.html"> Project Status Entry</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper"   ng-app="projectApp" ng-controller="projectcontroller">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Edit Project</h1>
+                </div>
+            </div>
+
+			<!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa  fa-user fa-fw"></i> Please update project details below Please enter project details below <B><i>[Fields marked with <font size="3" color="RED"><B>*</B></font> are mandatory]</i></B>
+                            <div class="pull-right">
+                            </div>
+                        </div>
+
+						<!-- /.panel-heading -->
+                        <div class="panel-body">    
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Project SR#:
+									</div>
+									<div class="col-lg-5">
+										<input type="text" class="form-control" id="srref" name="srref" value="{{ project.servicerequest }}">
+                                    </div>
+                                    <div class="col-lg-1">
+										<font size="3" color="RED"><B>*</B></font>
+									</div>
+								</div>	
+                            </div>
+                            <div class="row">
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-sm-3">
+                                        M&O?
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input type="checkbox" class="form-control" id="ismno" name="ismno"  value="{{ project.ismno }}">
+                                    </div>
+                                    
+                                </div>	
+                            </div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Project Name:
+									</div>
+									<div class="col-lg-8">
+										<input type="text" class="form-control" id="projectname" name="projectname" value="{{ project.projectname }}">
+                                    </div>
+                                    <div class="col-lg-1">
+										<font size="3" color="RED"><B>*</B></font>
+									</div>
+								</div>	
+                            </div>
+                            <div class="row">
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="col-lg-3">
+                                        Currently Assigned Manager:
+                                    </div>
+                                    <div class="col-lg-5 btn-success">
+                                            <span id="currentmanager"></span> [<span id="currentmanagerid">{{ project.managerid }}</span>]
+                                            
+                                    </div>
+                                    <div class="col-lg-1">
+										<font size="3" color="RED"><B>*</B></font>
+									</div>
+                                </div>	
+                            </div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-3">
+										Change Manager:
+									</div>
+									<div class="col-lg-5"  ng-app="projectApp" ng-controller="managercontroller">
+                                        <select class="form-control" id="managers">
+                                                <option id="0" value="0"> Select one from below</option>
+                                                <option ng-repeat="manager in managerslist" id="{{ manager.id }}" value="{{ manager.id }}"> {{ manager.managername }} </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-1">
+										<font size="3" color="RED"><B>*</B></font>
+									</div>
+								</div>	
+                            </div>
+                            <div class="row">
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-3">
+                                            Project Lead:
+                                        </div>
+                                        <div class="col-lg-5"  ng-app="projectApp" ng-controller="managercontroller">
+                                                <input type="text" class="form-control" id="projectlead" name="projectlead" value="{{ project.projectlead }}">
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <font size="3" color="RED"><B>*</B></font>
+                                        </div>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-3">
+                                            Target Date:
+                                        </div>
+                                        <div class="col-lg-2"  ng-app="projectApp" ng-controller="managercontroller">
+                                                <input type="text" class="form-control" id="targetdate" name="targetdate" value="{{ project.targetdate | getDate }}">
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <font size="3" color="RED"><B>*</B></font>
+                                        </div>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-3">
+                                            Project Docs Link:
+                                        </div>
+                                        <div class="col-lg-9"  ng-app="projectApp" ng-controller="managercontroller">
+                                                <input type="text" class="form-control" id="doclinks" name="doclinks" value="{{ project.doclinks }}">
+                                        </div>
+                                    </div>	
+                                </div>
+                                <div class="row">
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-3">
+                                            Project Status: 
+                                        </div>
+                                        <div class="col-lg-9" >
+                                            <select class="form-control" id="projectstatus">
+                                                <option> </option>
+                                                <option value="Open" class="btn-info" selected> Open</option>
+                                                <option value="Closed" class="btn-default"> Closed </option>
+                                                <option value="On Hold" class="btn-warning"> On Hold </option>
+                                                <option value="Canceled" class="btn-danger"> Canceled </option>
+                                        </select>
+                                        </div>
+                                    </div>	
+                                </div>      
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-3">
+										
+								</div>
+								<div class="col-lg-5">
+                                    <button class="form-control btn btn-primary" id="btnupdate"> Update </button>
+                                    <br><br>
+                                    <center><span id="msg"></span></center>
+								</div>
+                            </div>
+                            <div class="row">
+								<br>
+							</div>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+
+					</div>
+				</div>
+            <!-- ... Your content goes here ... -->
+
+			<div style="height: 100px;"></div>
+			<center>
+				&copy 2020. All Rights Reserved. California State Controller's Office. ISD Division.<br>
+				This portal is for authorized personnel only. For access request please contact ISD Customer Service
+			</center>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+<script src="js/setusername.js"></script>
+    <!------------------------------------------------------------------------------------------------------>
+
+
+
+
+    <script src="controllers/common/updateCRUD.js"></script>
+    <script src="controllers/jQupdateproject.js"></script>
+     <!------------------------------------------------------------------------------------------------------>
+
+</body>
+</html>

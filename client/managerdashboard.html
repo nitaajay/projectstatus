@@ -1,0 +1,256 @@
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SCO Pro - Dashboard</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+    function createpopup(url)
+        {    
+            window.open(url,name,'width=1200,height=750,toolbar=0,menubar=0,location=0');  
+        };
+    </script>
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SCO Pro</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <span id="uname">John Doe</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                        <li><a href="changepw.html"><i class="fa fa-lock fa-fw"></i> Change Password</a>
+                        </li>
+                        <li><a id="logout" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cogs fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="manageprojects.html"> Manage Projects</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-calendar-check-o fa-fw"></i> Status Reporting<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="reportstatus.html"> Project Status Entry</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Welcome <span id="username">John Doe</span></h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-area-chart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><span id="totalstatuses">0</span></div>
+                                    <div>#Statuses Filed</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><span id="totalprojects">0</span></div>
+                                    <div>Total Projects (Open & Closed)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-calendar-check-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><span id="lastreported">JAN</span></div>
+                                    <div>Last Reported</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- /.row -->
+
+			<!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    &nbsp;&nbsp;<i class="fa fa-archive fa-fw"></i> Status Reported History 
+                                </div>
+                                <div class="col-sm-8" align="right">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" id="openprojects" name="projstatus" checked> Open
+                                    &nbsp;&nbsp;
+                                    <input type="radio" id="closedprojects" name="projstatus"> Closed
+                                    &nbsp;&nbsp;
+                                    <input type="radio" id="canceledprojects" name="projstatus"> Canceled
+                                    &nbsp;&nbsp;
+                                    <input type="radio" id="onholdprojects" name="projstatus"> On Hold
+                                </div>
+                            </div>
+                        </div>
+
+						<!-- /.panel-heading -->
+                        <div class="panel-body">    
+							<table class="table table-bordered table-hover table-striped" id="projectstable">
+								<thead>
+									<td><b>#</b></td>
+                                    <td><b>SR# - Project Name</b></td>
+                                    <td><center><b>Manager</b></center></td>
+                                    <td><b>Target Date</b></td>
+                                    <td><centeR><b>View Status</b></center></td>
+                                    <td><centeR><b>Overall Status</b></center></td>
+                                    <td bgcolor="#101010">&nbsp;</td>
+                                    <td colspan="7"><centeR><b>SDLC Phase Statuses</b></center></td>
+                                </thead>
+                                <thead>
+                                        <td><b>#</b></td>
+                                        <td><b> </b></td>
+                                        <td><center><b></b></center></td>
+                                        <td><b></b></td>
+                                        <td><centeR><b></b></center></td>
+                                        <td><centeR><b></b></center></td>
+                                        <td bgcolor="#101010">&nbsp;</td>
+                                        <td><centeR><b>Intake</b></center></td>
+                                        <td><centeR><b>Reqmt</b></center></td>
+                                        <td><centeR><b>Design</b></center></td>
+                                        <td><centeR><b>Build</b></center></td>
+                                        <td><centeR><b>Rollout</b></center></td>
+                                        <td><centeR><b>Accept</b></center></td>
+                                        <td><centeR><b>Sust</b></center></td>
+                                    </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                            
+					</div>
+				</div>
+            <!-- ... Your content goes here ... -->
+
+			<div style="height: 100px;"></div>
+			<center>
+				&copy 2020. All Rights Reserved. California State Controller's Office. ISD Division.<br>
+				This portal is for authorized personnel only. For access request please contact ISD Customer Service
+			</center>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+<script src="js/setusername.js"></script>
+<script src="controllers/common/returnuri.js"></script>
+<script src="controllers/common/updateCRUD.js"></script>
+<script src="controllers/jQdashboardmanager.js"></script>
+<script src="js/retrievequerystring.js"></script>
+<script src="controllers/common/getverbosemonth.js"></script>
+</body>
+</html>

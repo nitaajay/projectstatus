@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SCO ProStatus - Report Project Status</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SCO Pro</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+
+        </ul>
+
+       <!-- Sidebar -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                    </li>
+					<li>
+                        <a href="#"><i class="fa fa-users fa-fw"></i> Client Admin<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="manageusers.html"> Manage Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-cogs fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="manageprojects.html"> Manage Projects</a>
+                            </li>
+                            <li>
+                                <a href="managemanagers.html">Manage Managers</a>
+                            </li>
+                        </ul>
+                    </li>
+					<li>
+                        <a href="#"><i class="fa fa-calendar-check-o fa-fw"></i> Status Reporting<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="reportstatus.html"> Project Status Entry</a>
+                            </li>
+                            <li>
+                                <a href="viewprojecthistory.html">My Project Statuses</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Project Status</h1>
+                </div>
+            </div>
+
+			<!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa  fa-calendar-check-o fa-fw"></i> Please set the project status below
+                            <div class="pull-right">
+                            </div>
+                        </div>
+
+						<!-- /.panel-heading -->
+                        <div class="panel-body">    
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Select Project:
+									</div>
+									<div class="col-lg-8">
+										<select class="form-control"" id="secret">
+											<option> Select one from below</option>
+											<option value="1"> Service Request#12345 Changes for account reconciliation </option>
+											<option value="11"> Service Request#22345 Changes for account reconciliation </option>
+											<option value="111"> Service Request#33345 Changes for account reconciliation </option>
+										</select>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										Overall Indicator:
+									</div>
+									<div class="col-lg-6">
+										<select class="form-control"" id="secret">
+											<option> Select one from below</option>
+											<option class="btn-info"> On Schedule </option>
+											<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+											<option class="btn-danger"> Major Show Stoppers HELP! </option>
+										</select>
+									</div>
+									<div class="col-lg-1 btn-warning">
+										<span> &nbsp;MINOR&nbsp; </span>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-sm-3">
+										SDLC Phase Status:
+									</div>
+									<div class="col-lg-8">
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Intake & Impact Analysis 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Requirements 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Design 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Build & Test 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Packaging & Rollout 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> First Run  
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										<hr/>
+										<div class="row">
+											<div class="col-sm-5">
+												<input type="checkbox"> Sustainment 
+											</div>
+											<div class="col-sm-7">
+												<select class="form-control"" id="secret">
+													<option> Select one from below</option>
+													<option class="btn-info"> On Schedule </option>
+													<option class="btn-warning"> Minor Show Stoppers - Can be Mitigated </option>
+													<option class="btn-danger"> Major Show Stoppers HELP! </option>
+												</select> 
+											</div>
+										</div>
+										
+										<br/>
+										<i>* Check is completed</i>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-3">
+										Accomplishments: <span id="acc"> </span>
+									</div>
+									<div class="col-lg-8">
+										<input type="text" class="form-control" name="accomplishments1" id="acc1" placeholder="1."><br>
+										<input type="text" class="form-control" name="accomplishments2"  id="acc2" placeholder="2."><br>
+										<input type="text" class="form-control" name="accomplishments3"  id="acc3" placeholder="3."><br>
+										<input type="text" class="form-control" name="accomplishments4"  id="acc4" placeholder="4."><br>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-3">
+										Issues / Changes:
+									</div>
+									<div class="col-lg-8">
+										<input type="text" class="form-control" name="issues1" placeholder="1."><br>
+										<input type="text" class="form-control" name="issues2" placeholder="2."><br>
+										<input type="text" class="form-control" name="issues3" placeholder="3."><br>
+										<input type="text" class="form-control" name="issues4" placeholder="4."><br>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-3">
+										
+								</div>
+								<div class="col-lg-5">
+									<a href="registeruser.html"><button class="form-control btn btn-primary"> Submit </button></a>
+								</div>
+							</div>
+                        </div>
+                        <!-- /.panel-body -->
+
+					</div>
+				</div>
+            <!-- ... Your content goes here ... -->
+
+			<div style="height: 100px;"></div>
+			<center>
+				&copy 2020. All Rights Reserved. California State Controller's Office. ISD Division.<br>
+				This portal is for authorized personnel only. For access request please contact ISD Customer Service
+			</center>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+
+<!-- Retrieve URL query string JavaScript -->
+<script src="js/retrievequerystring.js"></script>
+
+<!-- business logic JavaScript -->
+<script src="js/reportstatus.js"></script>
+
+</body>
+</html>

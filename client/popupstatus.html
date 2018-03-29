@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SCO Pro - Dashboard</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+  <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="page-header">Status Reported On <span id="statusdate">01/01/1000</span></h1>
+        </div>
+        <div class="col-lg-4" align="right">
+            <h1><a href="JavaScript: window.print();"  class="btn btn-info"> Print this page </a></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-book fa-fw"></i> Project Details
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <div class="row">
+                        <div class="col-sm-5">
+                            Title:
+                        </div>
+                        <div class="col-sm-7">
+                            <span id="projectname"></span>
+                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            M&O?
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="ismno"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            Manager:
+                        </div>
+                        <div class="col-sm-7">
+                            <span id="manager"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            Lead:
+                        </div>
+                        <div class="col-sm-7">
+                            <span id="projectlead"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            Created On:
+                        </div>
+                        <div class="col-sm-7">
+                            <span id="createdon"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            Target Date:
+                        </div>
+                        <div class="col-sm-7">
+                            <span id="targetdate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-archive fa-fw"></i> Accomplishments this Week
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <span id="accomplishments"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bullseye fa-fw"></i> Next Week Goals
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <span id="nextweekgoals"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-users fa-fw"></i> Project Stakeholders
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <span id="stakeholders"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-cogs fa-fw"></i> SDLC Phase-based Status
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <table class="table table-bordered table-hover table-striped" id="sdlcphases">
+                            <tr> 
+                                <td>
+                                    Phase 
+                                </td>
+                                <td> 
+                                    Started?
+                                </td>
+                                <td> 
+                                    Status
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Intake Planning & Impact Analysis
+                                </td>
+                                <td> 
+                                    <span id="intake"></span>
+                                </td>
+                                <td id="intakecol"> 
+                                    <span id="intakestatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                        Requirements 
+                                </td>
+                                <td> 
+                                    <span id="requirements"></span>
+                                </td>
+                                <td id="requirementscol">
+                                    <span id="requirementsstatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Design 
+                                </td>
+                                <td> 
+                                    <span id="design"></span>
+                                </td>
+                                <td id="designcol"> 
+                                    <span id="designstatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Build & Test 
+                                </td>
+                                <td> 
+                                    <span id="buildtest"></span>
+                                </td>
+                                <td id="buildtestcol"> 
+                                    <span id="buildteststatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Implementation (Delivery & PO) 
+                                </td>
+                                <td> 
+                                    <span id="implementation"></span>
+                                </td>
+                                <td id="implementationcol"> 
+                                    <span id="implementationstatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Final Client Acceptance 
+                                </td>
+                                <td> 
+                                    <span id="clientacceptance"></span>
+                                </td>
+                                <td id="clientacceptancecol">  
+                                    <span id="clientacceptancestatus"></span>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td>
+                                    Closing & Sustainment 
+                                </td>
+                                <td> 
+                                    <span id="sustainment"></span>
+                                </td>
+                                <td id="sustainmentcol">   
+                                    <span id="sustainmentstatus"></span>
+                                </td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-balance-scale fa-fw"></i> Issues & Mitigation
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <div class="row"> 
+                        <table class="table table-bordered table-hover table-striped" id="issuesmitigation">
+                            <tr> 
+                                <td>
+                                    Issues
+                                </td>
+                                <td> 
+                                    Mitigation
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-file-text  fa-fw"></i> Lessons Learnt
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <div class="row"> 
+                        <span id="lessonslearnt"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-file-text  fa-fw"></i> History - Status Reported Trend
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">  
+                    <div class="row"> 
+                        <table class="table table-bordered table-hover table-striped" id="historicstatus">
+                            <thead>
+                                <td><B>Date Reported</B></td>
+                                <td><centeR><b>Overall</b></center></td>
+                                <td><centeR><b>Action</b></center></td>
+                                <td bgcolor="#101010">&nbsp;</td>
+                                <td colspan="7"><centeR><b>SDLC Phase Statuses</b></center></td>
+                            </thead>
+                            <thead>
+                                <td><B> </B></td>
+                                <td><centeR><b></b></center></td>
+                                <td><centeR><b></b></center></td>
+                                <td bgcolor="#101010">&nbsp;</td>
+                                <td><centeR><b>Intake</b></center></td>
+                                <td><centeR><b>Reqmt</b></center></td>
+                                <td><centeR><b>Design</b></center></td>
+                                <td><centeR><b>Build</b></center></td>
+                                <td><centeR><b>Rollout</b></center></td>
+                                <td><centeR><b>Accept</b></center></td>
+                                <td><centeR><b>Sust</b></center></td>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+        <center>
+            &copy 2020. All Rights Reserved. California State Controller's Office. ISD Division.<br>
+            This portal is for authorized personnel only. For access request please contact ISD Customer Service
+        </center>
+    </div>
+
+  </div>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+<script src="controllers/common/returnuri.js"></script>
+<script src="controllers/common/updateCRUD.js"></script>
+<script src="controllers/jQpopupstatus.js"></script>
+<script src="js/retrievequerystring.js"></script>
+<script src="js/getManagerIDfromquerystring.js"></script>
+<script src="controllers/common/getverbosemonth.js"></script>
+</body>
+</html>

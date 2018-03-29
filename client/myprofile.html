@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ESS - My rofile Details</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/morris.css" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/ess/employeedetails.js"></script>
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ESS Portal</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <span id="uname">John Doe</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                        <li><a id="logout" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="dashboard.html" class="active"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cogs fa-fw"></i> Admin<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="manageprojects.html"> Manage Projects</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-calendar-check-o fa-fw"></i> Status Reporting<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="reportstatus.html"> Project Status Entry</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Profile</h1>
+                </div>
+            </div>
+
+			<!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa  fa-user fa-fw"></i> My Profile Details
+                            <div class="pull-right">
+                            </div>
+                        </div>
+
+						<!-- /.panel-heading -->
+                        <div class="panel-body">  
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-2">
+										Username:
+									</div>
+									<div class="col-lg-3">
+										jdoe1234
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-2">
+										Password:
+									</div>
+									<div class="col-lg-3">
+										<span class="btn-danger">RESTRICTED<span> 
+									</div>
+									<div class="col-lg-3">
+										<button class="form-control btn btn-success"> Change Password </button>
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-2">
+										Contact Email:
+									</div>
+									<div class="col-lg-6">
+										<input type="text" class="form-control" name="email">
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<br>
+							</div>
+							<div class="row">
+								<div class="col-lg-2">
+										
+								</div>
+								<div class="col-lg-6">
+									<a href="updateprofile.html"><button class="form-control btn btn-primary"> Update Profile </button></a>
+								</div>
+							</div>
+                        </div>
+                        <!-- /.panel-body -->
+
+					</div>
+				</div>
+            <!-- ... Your content goes here ... -->
+
+			<div style="height: 100px;"></div>
+			<center>
+				&copy 2020. State Controller Office of California. <br><i>Unauthorized users will be prosecuted to maximum exted of the law.</i>
+			</center>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>
+<script src="js/setusername.js"></script>
+</body>
+</html>
